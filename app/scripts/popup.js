@@ -4,8 +4,12 @@
 console.log('\'Allo \'Allo! Popup');
 var apikey = '84fc473e0b8dba4e3c2dcc67ee1421ed';
 
-if (localStorage.token) {
+function loggedIn() {
 	$('form').hide();
+}
+
+if (localStorage.token) {
+	loggedIn();
 } else {
 	$('form').show();
 }
@@ -29,6 +33,7 @@ $('form').submit(function(event) {
 		var data = JSON.parse(rawdata);
 		if (data.token) {
 			localStorage.token = data.token;
+			loggedIn();
 		}
 	}).fail(function(data) {
 		console.log(data);
