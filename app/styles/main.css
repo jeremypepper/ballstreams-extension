@@ -1,7 +1,32 @@
 body {
   padding: 20px;
+  width: 157px;
 }
 
 form {
   display: none;
+}
+
+.game {
+  margin-bottom: 5px;
+}
+
+.game a {
+  text-decoration: none;
+  color: #333;
+  width: 100%;
+  display: block;
+}
+
+.game a:hover {
+  background: #fafafa;
+}
+
+.teamscore {
+  display: block;
+}
+
+.score {
+  color: #000;
+  font-weight: bold;
 }

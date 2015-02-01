@@ -39,6 +39,10 @@ module.exports = function (grunt) {
           livereload: true
         }
       },
+      handlebars: {
+        files: ['<%= config.app %>/templates/*.hbs'],
+        tasks: ['handlebars']
+      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -112,7 +116,7 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%= config.app %>/scripts/{,*/}*.js',
+        '<%= config.app %>/scripts/*.js',
         '!<%= config.app %>/scripts/vendor/*',
         'test/spec/{,*/}*.js'
       ]
@@ -245,6 +249,20 @@ module.exports = function (grunt) {
         }]
       }
     },
+    handlebars: {
+      compile: {
+        options: {
+          namespace: "ballstreams",
+          processName: function(filePath) {
+            var pieces = filePath.split("/");
+            return pieces[pieces.length - 1];
+          }
+        },
+        files: {
+          "<%= config.app %>/scripts/templates/score.js": "<%= config.app %>/templates/score.hbs"
+        }
+      }
+    },
 
     // Run some tasks in parallel to speed up build process
     concurrent: {
@@ -311,6 +329,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'chromeManifest:dist',
+    'handlebars',
     'useminPrepare',
     'concurrent:dist',
     'cssmin',
