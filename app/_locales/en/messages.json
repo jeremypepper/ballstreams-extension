@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "ballstreams enhancement suite",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Ballstreams enhancement suite",
+    "description": "The description of the application"
+  }
+}
